@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/home_dest">
+
+    <fragment
+        android:id="@+id/home_dest"
+        android:name="com.example.navigationdemo.HomeFragment"
+        android:label="Home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/flow_step_two_dest"
+        android:name="com.example.navigationdemo.FlowStepFragment"
+        android:label="Flow Step Two"
+        tools:layout="@layout/fragment_step_two">
+        <action
+            android:id="@+id/action_next"
+            app:popUpTo="@id/home_dest" />
+        <argument
+            android:name="flowStepNumber"
+            android:defaultValue="2"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/flow_step_one_dest"
+        android:name="com.example.navigationdemo.FlowStepFragment"
+        android:label="Flow Step One"
+        tools:layout="@layout/fragment_step_one">
+        <action
+            android:id="@+id/action_next"
+            app:destination="@id/flow_step_two_dest" />
+        <argument
+            android:name="flowStepNumber"
+            android:defaultValue="1"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/deeplink_dest"
+        android:name="com.example.navigationdemo.DeepLinkFragment"
+        android:label="Deep Link"
+        tools:layout="@layout/fragment_deep_link">
+        <argument
+            android:name="messageDeepLink"
+            android:defaultValue="Android X"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+
+</navigation>
